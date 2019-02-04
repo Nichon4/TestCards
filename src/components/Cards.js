@@ -2,9 +2,10 @@ import React from 'react'
 import { StyledCard } from "../layout/Cards"
 import {addCard, removeCard} from "./actions"
 import { connect } from 'react-redux'
+import { history } from "../configureStore"
 
 const mapStateToProps = state => ({
-  cards: state
+  cards: state.cards
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -21,6 +22,7 @@ class Cards extends React.Component {
   };
 
   handleClick = (event) => {
+
     if (event.shiftKey) {
       if (event.altKey) {
         this.props.addCard("wide");
@@ -36,6 +38,7 @@ class Cards extends React.Component {
         console.log("last card");
       }
     }
+
   };
 
 
@@ -47,7 +50,8 @@ class Cards extends React.Component {
             if ( id + 1 < array.length ) {
               return (
                 <StyledCard
-                  onClick={this.handleClick}
+                  onClick={(e) => {this.handleClick(e);
+                    history.push('/');}}
                   key={id}
                   number={id}
                 />
@@ -55,7 +59,8 @@ class Cards extends React.Component {
             } else {
               return (
                 <StyledCard
-                  onClick={this.handleClick}
+                  onClick={(e) => {this.handleClick(e);
+                    history.push('/');}}
                   key={id}
                   type={card.type}
                   number={id}

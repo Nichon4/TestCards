@@ -1,18 +1,22 @@
 import React, { Component } from 'react'
 import { BGDiv } from './layout/App'
-import Cards from "./components/Cards";
+import Cards from "./components/Cards"
 import { Provider } from 'react-redux'
-import { store } from "./components/index"
+import { ConnectedRouter } from 'connected-react-router'
+import configureStore, { history } from "./configureStore"
 
+const store = configureStore();
 
 class App extends Component {
   render() {
     return (
       <Provider store={store}>
-      <div>
-        <BGDiv/>
-        <Cards/>
-      </div>
+        <ConnectedRouter history={history}>
+          <div>
+            <BGDiv/>
+            <Cards/>
+          </div>
+        </ConnectedRouter>
       </Provider>
     );
   }
