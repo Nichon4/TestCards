@@ -18,6 +18,7 @@ class Cards extends React.Component {
     super(props);
 
     this.handleClick = this.handleClick.bind(this);
+
   };
 
   handleClick = (event) => {
@@ -40,7 +41,7 @@ class Cards extends React.Component {
   render() {
     return(
       <div>
-        { //может стоить мапить прежде чем рендерить?
+        {
           this.props.cards.map( (card, id, array) => {
             return (
               <StyledCard

@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { BGDiv } from './layout/App'
-import Cards from "./components/Cards";
 import { Provider } from 'react-redux'
 import { store } from "./components/index"
+
+import { BGDiv } from './layout/App'
+import Cards from "./components/Cards";
 
 
 class App extends Component {

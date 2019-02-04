@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const wideWidth = (number) => ( window.innerWidth - number*60 - 20 );
+const wideWidth = (number) => ( window.innerWidth - number*60 - 60 );
 
 const CardBody = styled.div`
   display: inline-block;
@@ -11,8 +11,9 @@ const CardBody = styled.div`
   box-shadow: 0 0 5px;
   background-color: white;
   width: ${ props => props.type === "wide" ? wideWidth(props.number) : "400" }px;
-  height: calc(100vh - 20px);
-  margin: 10px;
+  max-width: 960px;
+  height: calc(100vh - 40px);
+  margin: 20px 30px;
   vertical-align: middle;
   text-align: center;
 `;
@@ -42,9 +43,12 @@ const CardText = styled.p`
 export const StyledCard = ({onClick, number, type}) => {
 
   return (
-    <CardBody onClick={onClick} type={type} number={number}>
+    <CardBody
+      onClick={onClick}
+      type={type}
+      number={number} >
       <CardNumber/>
-      <CardText>{number}</CardText>
+      <CardText>{ number + 1 }</CardText>
     </CardBody>
   );
 };
