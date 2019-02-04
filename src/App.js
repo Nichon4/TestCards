@@ -9,10 +9,10 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-      <div>
-        <BGDiv/>
-        <Cards/>
-      </div>
+        <div>
+          <BGDiv/>
+          <Cards/>
+        </div>
       </Provider>
     );
   }

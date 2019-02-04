@@ -24,16 +24,14 @@ class Cards extends React.Component {
     if (event.shiftKey) {
       if (event.altKey) {
         this.props.addCard("wide");
-        console.log("added wide card");
       }  else {
         this.props.addCard("narrow");
-        console.log("added narrow card");
       }
     } else {
       if (this.props.cards.length > "1" ) {
         this.props.removeCard();
       } else {
-        console.log("last card");
+        return true;
       }
     }
   };
@@ -44,24 +42,14 @@ class Cards extends React.Component {
       <div>
         { //может стоить мапить прежде чем рендерить?
           this.props.cards.map( (card, id, array) => {
-            if ( id + 1 < array.length ) {
-              return (
-                <StyledCard
-                  onClick={this.handleClick}
-                  key={id}
-                  number={id}
-                />
-              )
-            } else {
-              return (
-                <StyledCard
-                  onClick={this.handleClick}
-                  key={id}
-                  type={card.type}
-                  number={id}
-                />
-              )
-            }
+            return (
+              <StyledCard
+                onClick={this.handleClick}
+                key={id}
+                type={( id + 1 < array.length ) ? null : card.type}
+                number={id}
+              />
+            )
           })
         }
       </div>
