@@ -7,6 +7,7 @@ import configureStore, { history } from "./configureStore"
 
 const store = configureStore();
 
+
 class App extends Component {
   render() {
     return (

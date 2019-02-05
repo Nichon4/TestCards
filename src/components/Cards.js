@@ -26,6 +26,7 @@ class Cards extends React.Component {
     };
 
     this.handleClick = this.handleClick.bind(this);
+
   };
 
   handleClick = (event) => {
@@ -78,27 +79,16 @@ class Cards extends React.Component {
     return(
       <div>
         {
-          this.props.cards.present.map( (card, id, array) => {
-            if ( id + 1 < array.length ) {
-              return (
-                <StyledCard
+          this.props.cards.map( (card, id, array) => {
+            return (
+              <StyledCard
                   onClick={(e) => {this.handleClick(e);
                     history.push("/?");}}
-                  key={id}
-                  number={id}
-                />
-              )
-            } else {
-              return (
-                <StyledCard
-                  onClick={(e) => {this.handleClick(e);
-                    history.push("/?");}}
-                  key={id}
-                  type={card.type}
-                  number={id}
-                />
-              )
-            }
+                key={id}
+                type={( id + 1 < array.length ) ? null : card.type}
+                number={id}
+              />
+            )
           })
         }
       </div>
