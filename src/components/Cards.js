@@ -6,7 +6,7 @@ import { history } from '../configureStore'
 import { ActionCreators as UndoActionCreators } from 'redux-undo'
 
 const mapStateToProps = state => ({
-  cards: state.cards
+  cards: state
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -30,23 +30,19 @@ class Cards extends React.Component {
   };
 
   handleClick = (event) => {
-
     if (event.shiftKey) {
       if (event.altKey) {
         this.props.addCard("wide");
-        console.log("added wide card");
       }  else {
         this.props.addCard("narrow");
-        console.log("added narrow card");
       }
     } else {
       if (this.props.cards.present.length > "1" ) {
         this.props.removeCard();
       } else {
-        console.log("last card");
+        return true;
       }
     }
-
   };
 
   componentDidMount() {

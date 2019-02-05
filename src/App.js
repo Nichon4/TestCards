@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
-import { BGDiv } from './layout/App'
-import Cards from "./components/Cards"
 import { Provider } from 'react-redux'
 import { Router } from 'react-router'
 import configureStore, { history } from "./configureStore"
 
-const store = configureStore();
+import { BGDiv } from './layout/App'
+import Cards from "./components/Cards";
 
 
 class App extends Component {

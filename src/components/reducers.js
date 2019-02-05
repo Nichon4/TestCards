@@ -12,10 +12,10 @@ function cards(state = initialState, action) {
         {
           type: action.cardType
         }
-      ]
+      ];
 
     case REMOVE_CARD:
-      return dropLast(1, state)
+      return dropLast(1, state);
 
     case '@@router/LOCATION_CHANGE':
       console.log(action);
