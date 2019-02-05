@@ -6,7 +6,7 @@ import { history } from '../configureStore'
 import { ActionCreators as UndoActionCreators } from 'redux-undo'
 
 const mapStateToProps = state => ({
-  cards: state
+  cards: state.cards
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -75,7 +75,7 @@ class Cards extends React.Component {
     return(
       <div>
         {
-          this.props.cards.map( (card, id, array) => {
+          this.props.cards.present.map( (card, id, array) => {
             return (
               <StyledCard
                   onClick={(e) => {this.handleClick(e);
