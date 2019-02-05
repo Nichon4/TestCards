@@ -3,16 +3,14 @@ import { createStore } from 'redux'
 
 import createRootReducer from "./reducers"
 
-export const history = createBrowserHistory()
+export const history = createBrowserHistory();
 
 export default function configureStore(preloadedState) {
-  const store = createStore(
+  return createStore(
     createRootReducer(history),
     preloadedState,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   )
-
-  return store
 }
 
 

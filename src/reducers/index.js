@@ -1,8 +1,7 @@
 import { combineReducers } from 'redux'
-import { connectRouter } from 'connected-react-router'
 import cards from "../components/reducers"
+import undoable from 'redux-undo'
 
-export default (history) => combineReducers({
-  cards: cards,
-  router: connectRouter(history),
+export default () => combineReducers({
+  cards: undoable(cards),
 })

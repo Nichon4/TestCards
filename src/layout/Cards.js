@@ -39,7 +39,7 @@ const CardText = styled.p`
 `;
 
 
-export const StyledCard = ({onClick, number, type}) => {
+const StyledCard = ({onClick, number, type}) => {
 
   return (
     <CardBody onClick={onClick} type={type} number={number}>
@@ -48,3 +48,5 @@ export const StyledCard = ({onClick, number, type}) => {
     </CardBody>
   );
 };
+
+export default StyledCard;

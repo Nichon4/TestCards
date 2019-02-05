@@ -17,6 +17,10 @@ function cards(state = initialState, action) {
     case REMOVE_CARD:
       return dropLast(1, state)
 
+    case '@@router/LOCATION_CHANGE':
+      console.log(action);
+      return state
+
     default:
       return state
   }
