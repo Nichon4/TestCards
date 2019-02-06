@@ -29,27 +29,21 @@ class Cards extends React.Component {
 
   };
 
-  handleClick = (event) => {
-    if (event.shiftKey) {
-      if (event.altKey) {
-        this.props.addCard("wide");
-      }  else {
-        this.props.addCard("narrow");
-      }
+  handleClick = ({shiftKey, altKey}) => {
+    let cardType = altKey ? "wide" : "narrow";
+
+    if (shiftKey) {
+      this.props.addCard(cardType);
+    } else if (this.props.cards.present.length > "1" ) {
+      this.props.removeCard();
     } else {
-      if (this.props.cards.present.length > "1" ) {
-        this.props.removeCard();
-      } else {
-        return true;
-      }
+      return true;
     }
   };
 
   componentDidMount() {
 
-    history.listen((location, action) => {
-
-      let key = location.key;
+    history.listen(({key}, action) => {
 
       if ( action === "PUSH" ) {
 
@@ -57,15 +51,21 @@ class Cards extends React.Component {
 
       } else if ( action === "POP" ) {
 
-        if ( this.state.futureKeys.includes(location.key) ) {
+        if ( this.state.futureKeys.includes(key) ) {
 
-          this.setState({ futureKeys: this.state.futureKeys.slice( 0, -1 ), });
-          this.props.onRedo();
+          this.setState({
+              futureKeys: this.state.futureKeys.slice( 0, -1 ),
+            },
+            this.props.onRedo
+          );
 
         } else {
 
-          this.setState({ futureKeys: this.state.futureKeys.concat(key), });
-          this.props.onUndo();
+          this.setState({
+              futureKeys: this.state.futureKeys.concat(key),
+            },
+            this.props.onUndo
+          );
         }
       }
     });
@@ -78,8 +78,8 @@ class Cards extends React.Component {
           this.props.cards.present.map( (card, id, array) => {
             return (
               <StyledCard
-                  onClick={(e) => {this.handleClick(e);
-                    history.push("/?");}}
+                onClick={(e) => {this.handleClick(e);
+                  history.push("/?");}}
                 key={id}
                 type={( id + 1 < array.length ) ? null : card.type}
                 number={id}
